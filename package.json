@@ -1,0 +1,14 @@
+{
+    "name" : "mdm_show_manager",
+    "version" : "1.0.0",
+    "repository" : "https://github.com/bobjutsu/Plugin-Scaffolding",
+    "devDependencies" : {
+        "grunt"                  : "latest",
+        "grunt-newer"            : "latest",
+        "grunt-contrib-compass"  : "latest",
+        "grunt-autoprefixer"     : "latest",
+        "grunt-contrib-jshint"   : "latest",
+        "grunt-contrib-uglify"   : "latest",
+        "grunt-contrib-watch"    : "latest"
+    }
+}

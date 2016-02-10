@@ -1,0 +1,7 @@
+<p class="<?php echo $input_wrapper; ?>">
+    <label for="<?php echo $option_key; ?>[width]">Width: </label><input type="number" id="<?php echo esc_attr( $setting['id'] ); ?>[width]" class="<?php echo sprintf( 'mdmsm_number %s', esc_attr( $setting['options']['width']['class'] ) ); ?>" name="<?php echo $option_key; ?>[width]" value="<?php echo esc_attr( $setting['value']['width'] ); ?>">
+    <label for="<?php echo $option_key; ?>[height]">Height: </label><input type="number" id="<?php echo esc_attr( $setting['id'] ); ?>[height]" class="<?php echo sprintf( 'mdmsm_number %s', esc_attr( $setting['options']['height']['class'] ) ); ?>" name="<?php echo $option_key; ?>[height]" value="<?php echo esc_attr( $setting['value']['height'] ); ?>">
+    <br>
+    <label for="<?php echo $option_key; ?>[crop]"><input type="checkbox" class="<?php echo sprintf( '%s%s %s', $this->plugin_name, '_checkbox', esc_attr( $setting['options']['crop']['class'] ) ); ?>" name="<?php echo $option_key; ?>[crop]" value="<?php echo $setting['options']['crop']['checked_value']; ?>" <?php checked( $setting['value']['crop'], $setting['options']['crop']['checked_value'] ); ?>>&nbsp;<?php echo $setting['options']['crop']['label']; ?></label>
+    <p class="description"><?php echo $setting['options']['crop']['description']; ?></p>
+</p>
