@@ -10,7 +10,7 @@
                 <h3 class="mdmsm_show_title">
                     <a href="<?php echo $this->onair['permalink'] ?>"><?php echo $this->onair['title'] ?></a>
                 </h3>
-                <?php echo apply_filters( 'the_content', $this->onair['description'] ); ?>
+                <?php echo wpautop( wptexturize( $this->onair['description'] ) ); ?>
             </div>
         </div>
         <?php if( $instance['hide_next'] != 'on' && isset( $this->ondeck ) ) : ?>

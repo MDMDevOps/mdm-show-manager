@@ -350,7 +350,7 @@ class Mdm_Show_Manager_Admin {
         }
         $options = array(
             'uri_redirect' => isset( $_POST['uri_redirect'] ) ? esc_url_raw( $_POST['uri_redirect'] ) : null,
-            'widget_description' => isset( $_POST['widget_description'] ) ? esc_textarea( $_POST['widget_description'] ) : null,
+            'widget_description' => isset( $_POST['widget_description'] ) ? stripslashes( wp_filter_post_kses( $_POST['widget_description'] ) ) : null,
         );
         update_post_meta( $post_id, 'show_options', $options );
     }

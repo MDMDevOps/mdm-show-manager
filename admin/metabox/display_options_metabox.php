@@ -10,7 +10,7 @@
 <div id="mdmsm_options_metabox" class="mdmsm_metabox mdmsm_container" data-showid="<?php echo $post->ID; ?>">
     <p>
     <label for="widget_description">Description to show in widget</label>
-    <textarea class="widefat" name="widget_description" id="widget_description" cols="30" rows="10" placeholder="Short Description"><?php echo $description; ?></textarea>
+    <textarea class="widefat" name="widget_description" id="widget_description" cols="30" rows="10" placeholder="Short Description"><?php echo esc_html( $description ); ?></textarea>
     </p>
 
     <label for="uri_redirect">Redirect URI</label>

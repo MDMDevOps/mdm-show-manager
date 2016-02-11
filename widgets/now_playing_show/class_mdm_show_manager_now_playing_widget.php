@@ -122,8 +122,8 @@ class Mdm_Show_Manager_Now_Playing_Widget extends WP_Widget {
 
     private function set_onair( $next = true ) {
         $options     = ( is_array( get_post_meta( $this->nowplaying['showid'], 'show_options', true ) ) ) ? get_post_meta( $this->nowplaying['showid'], 'show_options', true ) : array();
-        $permalink   = ( isset( $options['uri_redirect'] ) ) ? esc_url( $options['uri_redirect'], 'display' ) : get_permalink( $this->nowplaying['showid'] );
-        $description = ( isset( $options['widget_description'] ) ) ? esc_attr( $options['widget_description'] ) : null;
+        $permalink   = ( isset( $options['uri_redirect'] ) && !empty( $options['uri_redirect'] ) ) ? esc_url( $options['uri_redirect'], 'display' ) : get_permalink( $this->nowplaying['showid'] );
+        $description = ( isset( $options['widget_description'] ) ) ? $options['widget_description'] : null;
         $this->onair = array(
             'showid'      => $this->nowplaying['showid'],
             'title'       => get_the_title( $this->nowplaying['showid'] ),
