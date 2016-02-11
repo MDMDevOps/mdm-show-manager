@@ -165,7 +165,12 @@ class Mdm_Show_Manager_Now_Playing_Widget extends WP_Widget {
         }
         // Create a datetime object to hold NOW time, using timezone defined in wordpress
         $now = new DateTime();
-        $now->setTimeZone( new DateTimeZone( get_option('gmt_offset', 0 ) ) );
+        // Set timezone
+        $timezone = get_option( 'timezone_string', 'UTC' );
+        if( !isset( $timezone ) || !trim( $timezone ) || $timezone == '' ) {
+            $timezone = 'UTC';
+        }
+        $now->setTimeZone( new DateTimeZone( $timezone ) );
         // Loop through the schedule to see if we have a match
         $keys  = array_keys( $this->utilities->onair_master[ $now->format( 'N' ) ] );
         $index = 0;

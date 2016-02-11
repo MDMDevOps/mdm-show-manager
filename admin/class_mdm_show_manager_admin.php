@@ -82,7 +82,12 @@ class Mdm_Show_Manager_Admin {
         // Create Datetime object
         $this->time = new DateTime();
         // Set timezone from wordpress timezone setting
-        $this->time->setTimeZone( new DateTimeZone( get_option('gmt_offset', 0 ) ) );
+        // Set timezone
+        $timezone = get_option( 'timezone_string', 'UTC' );
+        if( !isset( $timezone ) || !trim( $timezone ) || $timezone == '' ) {
+            $timezone = 'UTC';
+        }
+        $this->time->setTimeZone( new DateTimeZone( $timezone ) );
     }
 
     /**
