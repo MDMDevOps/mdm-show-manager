@@ -40,6 +40,14 @@ Answer
 
 == Changelog ==
 
+= v1.1.0 alpha - March 2, 2016 =
+* Updated widget code
+* Added redirect functionality
+* Added content shortcode
+* Added social profile integration for individual shows
+* Fixed bug on master schedule rebase that limited shows to 10
+* Updated admin display to be more consistant with Wordpress core styles
+
 = v1.0.0 alpha - Febuary 10, 2016 =
 * Added plugin base code to repository
 * Init repository

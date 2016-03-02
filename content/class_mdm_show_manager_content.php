@@ -60,7 +60,7 @@ class Mdm_Show_Manager_Content {
                 'label'                 => __( 'Show', $this->plugin_name ),
                 'description'           => __( 'Radio Show', $this->plugin_name ),
                 'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', ),
-                'taxonomies'            => array( 'category', ' post_tag' ),
+                'taxonomies'            => array( 'post_tag' ),
                 'hierarchical'          => true,
                 'public'                => true,
                 'show_ui'               => true,

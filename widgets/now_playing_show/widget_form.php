@@ -6,7 +6,7 @@
     <label for="<?php echo $this->get_field_name( 'default_show' ); ?>">Default Show</label>
     <select class="widefat" name="<?php echo $this->get_field_name( 'default_show' ); ?>" id="<?php echo $this->get_field_id( 'default_show' ); ?>">
         <option value="">None</option>
-        <?php foreach( $this->shows as $show ) : ?>
+        <?php foreach( $shows as $show ) : ?>
             <?php $selected = ( $instance['default_show'] == $show['id'] ) ? 'selected' : null; ?>
             <option value="<?php echo $show['id']; ?>" <?php echo $selected; ?>><?php echo $show['title'] ?></option>
         <?php endforeach; ?>

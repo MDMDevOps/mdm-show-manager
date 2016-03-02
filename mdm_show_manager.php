@@ -11,7 +11,7 @@
  * Plugin Name: MDM Show Manager
  * Plugin URI:  http://midwestfamilymarketing.com
  * Description: This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:     1.0.3
+ * Version:     1.1.0
  * Author:      Mid-West Family Marketing
  * Author URI:  http://midwestfamilymarketing.com
  * License:     GPL-2.0+
@@ -30,22 +30,21 @@ if ( ! defined( 'WPINC' ) ) {
  * @since 1.0.0
  */
 
-
- if( !function_exists( 'get_mdm_show_manager_args' ) ) {
-     function get_mdm_show_manager_args() {
-         $plugin_args = array (
+ if( !function_exists( 'mdmsm_plugin_config' ) ) {
+     function mdmsm_plugin_config() {
+         $plugin_config = array (
              // 1. Reference to the name to use internally for the plugin
              'plugin_name'    => 'mdm_show_manager',
              // 2. Reference to root directory NAME ( what Wordpress uses internally as the "plugin slug" )
              'plugin_slug'    => dirname( plugin_basename( __FILE__ ) ),
              // 3. Reference to the current version number, used internally
-             'plugin_version' => '1.0.0',
+             'plugin_version' => '1.1.0',
              // 4: Reference to this file, the main plugin file
              'plugin_base'    => __FILE__,
              // 5: Reference to setting key used to get stuff out of the database
              'settings_key'   => 'mdm_show_manager_settings',
          );
-         return $plugin_args;
+         return $plugin_config;
      }
  }
 
@@ -56,7 +55,7 @@ if ( ! defined( 'WPINC' ) ) {
 if( !function_exists( 'activate_mdm_show_manager' ) ) {
     function activate_mdm_show_manager() {
         include_once plugin_dir_path( __FILE__ ) . 'core/class_mdm_show_manager_activator.php';
-        Mdm_Show_Manager_Activator::activate( get_mdm_show_manager_args() );
+        Mdm_Show_Manager_Activator::activate( mdmsm_plugin_config() );
     }
     register_activation_hook( __FILE__, 'activate_mdm_show_manager' );
 }
@@ -68,7 +67,7 @@ if( !function_exists( 'activate_mdm_show_manager' ) ) {
 if( !function_exists( 'deactivate_mdm_show_manager' ) ) {
     function deactivate_mdm_show_manager() {
         include_once plugin_dir_path( __FILE__ ) . 'core/class_mdm_show_manager_deactivator.php';
-        Mdm_Show_Manager_Deactivator::deactivate( get_mdm_show_manager_args() );
+        Mdm_Show_Manager_Deactivator::deactivate( mdmsm_plugin_config() );
     }
     register_deactivation_hook( __FILE__, 'deactivate_mdm_show_manager' );
 }
@@ -86,7 +85,7 @@ require plugin_dir_path( __FILE__ ) . 'core/class_mdm_show_manager.php';
  */
 if( !function_exists( 'run_mdm_show_manager' ) ) {
     function run_mdm_show_manager() {
-        $plugin = new Mdm_Show_Manager( get_mdm_show_manager_args() );
+        $plugin = new Mdm_Show_Manager( mdmsm_plugin_config() );
         $plugin->run();
     }
     run_mdm_show_manager();

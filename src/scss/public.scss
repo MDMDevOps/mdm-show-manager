@@ -19,6 +19,18 @@ $breakpoints: (
 @import 'inc/_grid';
 @import 'libs/_fontello';
 
+.mdmsm-screen-reader-text {
+    clip: rect(0px, 0px, 0px, 0px);
+    -webkit-clip-path: rect( 0px 0px, 0px 0px, 0px 0px, 0px 0px);
+    clip-path: rect( 0px 0px, 0px 0px, 0px 0px, 0px 0px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
 #mdmsm_now_playing_show_widget {
     @include clearfix;
     .mdmsm_show_thumbnail {

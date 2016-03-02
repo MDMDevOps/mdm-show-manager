@@ -263,8 +263,8 @@ class Mdm_Show_Manager_Admin {
         $etime     = new DateTime( '@' . strtotime( $airtime['show']['etime'] ) );
         $class     = sprintf( 'span%smin', $airtime['slot']['duration'] * 60 );
         $meta      = sprintf( '<p class="showmeta">%s - %s</p>', $stime->format( 'g:i A' ), $etime->modify( '+1 second' )->format( 'g:i A' ) );
-        $showtitle = sprintf( '<h4 class="showtitle"><a href="%1$s">%2$s</a></h4>', get_edit_post_link( $airtime['showid'] ), get_the_title( $airtime['showid'] ) );
-        $content   = sprintf( '<div class="mdmsm-calendar-item %1$s" style="height:%2$spx;">%3$s%4$s</div>', $class, $airtime['slot']['duration'] * 60, $showtitle, $meta );
+        $showtitle = sprintf( '<h4 class="showtitle">%1$s</h4>', get_the_title( $airtime['showid'] ) );
+        $content   = sprintf( '<a class="mdmsm-calendar-item button button-primary %1$s" href="%2$s" style="height:%3$spx;">%4$s%5$s</a>', $class, get_edit_post_link( $airtime['showid'] ), $airtime['slot']['duration'] * 60, $showtitle, $meta );
         return sprintf( '<li class="timeslot" data-time="%1$s" style="z-index: %2$s">%3$s</li>', $this->time->format( 'h:i:s' ), 100 - $iter, $content );
     }
     /**
@@ -298,16 +298,114 @@ class Mdm_Show_Manager_Admin {
      * @param (object) $post : Post object
      */
     public function showoptions_metabox_callback( $post ) {
-        // Set our single schedule
-        $options     = ( is_array( get_post_meta( $post->ID, 'show_options', true ) ) ) ? get_post_meta( $post->ID, 'show_options', true ) : array();
-        $uri         = ( isset( $options['uri_redirect'] ) ) ? esc_url( $options['uri_redirect'], 'display' ) : null;
-        $description = ( isset( $options['widget_description'] ) ) ? esc_attr( $options['widget_description'] ) : null;
+        $social_fields = $this->get_social_fields( $post );
+        $options       = ( is_array( get_post_meta( $post->ID, 'show_options', true ) ) ) ? get_post_meta( $post->ID, 'show_options', true ) : array();
+        $uri_redirect  = ( isset( $options['uri_redirect'] ) ) ? esc_url( $options['uri_redirect'], 'display' ) : null;
+        $description   = ( isset( $options['widget_description'] ) ) ? esc_attr( $options['widget_description'] ) : null;
         // WP Nonce Field for saving post
         wp_nonce_field( 'options_metabox_nonce', 'options_nonce' );
-        // Set initial class to indicate if schedule is empty or not
-        $display_status = ( empty( $this->onair_single ) ) ? 'onair-empty' : 'onair';
         // Include metabox markup
         include plugin_dir_path( __FILE__ ) . 'metabox/display_options_metabox.php';
+    }
+
+    private function get_social_fields( $post ) {
+        $fields = array(
+            'facebook' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Facebook URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Facebook Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-facebook', $this->plugin_name ),
+                ),
+            ),
+            'twitter' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Twitter URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Twitter Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-twitter', $this->plugin_name ),
+                ),
+            ),
+            'instagram' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Instagram URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Instagram Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-instagram', $this->plugin_name ),
+                ),
+            ),
+            'pinterest' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Pinterest URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Pinterest Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-pinterest', $this->plugin_name ),
+                ),
+            ),
+            'youtube' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Youtube URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Youtube Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-youtube', $this->plugin_name ),
+                ),
+            ),
+            'vimeo' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Vimeo URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Vimeo Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-vimeo', $this->plugin_name ),
+                ),
+            ),
+            'gplus' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Google+ URI', $this->plugin_name ),
+                    'placeholder' => null,
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Google+ Icon', $this->plugin_name ),
+                    'placeholder' => __( 'mdmsm-icon-gplus', $this->plugin_name ),
+                ),
+            ),
+        );
+
+        // Get options from database
+        $socuri = ( is_array( get_post_meta( $post->ID, 'social_uri', true ) ) ) ? get_post_meta( $post->ID, 'social_uri', true ) : array();
+        $socico = ( is_array( get_post_meta( $post->ID, 'social_ico', true ) ) ) ? get_post_meta( $post->ID, 'social_ico', true ) : array();
+        // Merge with defaults
+        foreach( $fields as $name => $setting ) {
+            $fields[$name]['uri']['value'] = ( isset( $socuri[ $name ] ) && !empty( $socuri[$name] ) ) ? $socuri[$name] : null;
+            $fields[$name]['ico']['value'] = ( isset( $socico[ $name ] ) && !empty( $socico[$name] ) ) ? $socico[$name] : null;
+        }
+
+        return $fields;
     }
 
     /**
@@ -352,7 +450,20 @@ class Mdm_Show_Manager_Admin {
             'uri_redirect' => isset( $_POST['uri_redirect'] ) ? esc_url_raw( $_POST['uri_redirect'] ) : null,
             'widget_description' => isset( $_POST['widget_description'] ) ? stripslashes( wp_filter_post_kses( $_POST['widget_description'] ) ) : null,
         );
+        // Get values from $_POST
+        $socuri = ( isset( $_POST['social_uri'] ) && !empty( $_POST['social_uri'] ) ) ? $_POST['social_uri'] : array();
+        $socico = ( isset( $_POST['social_ico'] ) && !empty( $_POST['social_ico'] ) ) ? $_POST['social_ico'] : array();
+        // Sanitize
+        foreach( $socuri as $name => $uri ) {
+            $socuri[$name] = esc_url_raw( $uri );
+        }
+        foreach( $socico as $name => $ico ) {
+            $socico[$name] = sanitize_text_field( stripslashes( $ico ) );
+        }
+        // Update
         update_post_meta( $post_id, 'show_options', $options );
+        update_post_meta( $post_id, 'social_uri', $socuri );
+        update_post_meta( $post_id, 'social_ico', $socico );
     }
 
     /**
@@ -366,13 +477,16 @@ class Mdm_Show_Manager_Admin {
         // Array to hold our new master schedule
         $master = array();
         // Get the post meta from each show, and push to $onair
-        $args = array( 'post_type' => 'show', 'post_per_page' => -1, );
+        $args = array( 'post_type' => array( 'show' ), 'post_status' => array( 'publish' ), 'post_per_page' => -1, 'nopaging' => true );
+        // Run the query
         $the_query = new WP_Query( $args );
         if( $the_query->have_posts() ) {
             while( $the_query->have_posts() ) {
                 $the_query->the_post();
-                $post_meta = get_post_meta( get_the_id(), 'onair', true );
+                $post_meta = get_post_meta( $the_query->post->ID, 'onair', true );
+                ++$count;
                 if( is_array( $post_meta) && !empty( $post_meta ) ) {
+
                     foreach( $post_meta as $meta ) {
                         array_push( $onair, $meta );
                     }

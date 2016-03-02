@@ -186,8 +186,14 @@ class Mdm_Show_Manager {
         // Instantiate Public Object
         $plugin_public = new Mdm_Show_Manager_Public( $this->get_plugin_base(), $this->get_plugin_name(), $this->get_version(), $this->get_settings_key() );
         // Define Hooks
+        $this->loader->add_action( 'init', $plugin_public, 'set_settings' );
+        $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+        $this->loader->add_action( 'mdmsm_show_social', $plugin_public, 'output_social_links' );
+        $this->loader->add_action( 'template_redirect', $plugin_public, 'redirect_permalink', 1, 1 );
+        $this->loader->add_filter( 'post_type_link', $plugin_public, 'rewrite_permalink', 10, 4  );
+
     }
 
     /**
