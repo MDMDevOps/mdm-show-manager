@@ -104,6 +104,17 @@
                 'checked_value' => true,
                 'default'       => false
             ),
+            'archive_disable' => array(
+                'title'         => __( 'Disable Archive Page', $this->plugin_name ),
+                'label'         => __( 'Check to use a "PAGE" in place of post type archives', $this->plugin_name ),
+                'type'          => 'checkbox',
+                'class'         => null,
+                'id'            => null,
+                'section'       => $this->settings_key . '_general',
+                'description'   => sprintf( '<em>%s</em>', __( 'Allows you to replace the archive with a static page', $this->plugin_name ) ),
+                'checked_value' => true,
+                'default'       => false
+            ),
             'thumbnail' => array(
                 'title'       => __( 'Featured Image Options', $this->plugin_name ),
                 'type'        => 'mixed',
@@ -198,6 +209,8 @@
       */
      public function display_settings_page() {
          include plugin_dir_path( __FILE__ ) . 'partials/display_settings_page.php';
+         // Flushing rewrite rules on the settings page, to ensure the archive link works
+         flush_rewrite_rules();
      }
 
      /**

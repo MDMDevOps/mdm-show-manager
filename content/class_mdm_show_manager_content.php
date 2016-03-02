@@ -45,6 +45,7 @@ class Mdm_Show_Manager_Content {
     public function __construct( $plugin_name, $settings_key ) {
         $this->plugin_name = $plugin_name;
         $this->settings_key = $settings_key;
+        $this->settings = get_option( $this->settings_key, array() );
         $this->init_post_types();
         $this->init_taxonomies();
     }
@@ -70,7 +71,7 @@ class Mdm_Show_Manager_Content {
                 'show_in_admin_bar'     => true,
                 'show_in_nav_menus'     => true,
                 'can_export'            => true,
-                'has_archive'           => true,
+                'has_archive'           => ( isset( $this->settings['archive_disable'] ) && $this->settings['archive_disable'] == true ) ? false : true,
                 'exclude_from_search'   => false,
                 'publicly_queryable'    => true,
                 'capability_type'       => 'page',
@@ -133,53 +134,8 @@ class Mdm_Show_Manager_Content {
      * @since 1.0.0
      */
     public function init_taxonomies() {
+        // Placeholder for future development
         $this->taxonomies = array();
-        // $this->taxonomies = array(
-        //     'taxonomy_name' = array(
-        //         'hierarchical'       => true,
-        //         'public'             => true,
-        //         'show_ui'            => true,
-        //         'show_in_menu'       => true,
-        //         'show_in_nav_menus'  => true,
-        //         'show_admin_column'  => true,
-        //         'show_tagcloud'      => true,
-        //         'show_in_quick_edit' => true,
-        //         'meta_box_cb'        => null,
-        //         'description'        => __( 'Short Description', $this->plugin_name );
-        //         'attach'             => array( 'array of post type names to attach this taxonomy to' ),
-        //         'labels'             => array(
-        //             'name'                       => _x( 'Statuses', 'Taxonomy General Name', $this->plugin_name ),
-        //             'singular_name'              => _x( 'Status', 'Taxonomy Singular Name', $this->plugin_name ),
-        //             'menu_name'                  => __( 'Manage Statuses', $this->plugin_name ),
-        //             'all_items'                  => __( 'All Statuses', $this->plugin_name ),
-        //             'parent_item'                => __( 'Parent Status', $this->plugin_name ),
-        //             'parent_item_colon'          => __( 'Parent Status:', $this->plugin_name ),
-        //             'new_item_name'              => __( 'New Status', $this->plugin_name ),
-        //             'add_new_item'               => __( 'Add New Status', $this->plugin_name ),
-        //             'edit_item'                  => __( 'Edit Status', $this->plugin_name ),
-        //             'update_item'                => __( 'Update Status', $this->plugin_name ),
-        //             'view_item'                  => __( 'View Status', $this->plugin_name ),
-        //             'separate_items_with_commas' => __( 'Separate items with commas', $this->plugin_name ),
-        //             'add_or_remove_items'        => __( 'Add or remove statuses', $this->plugin_name ),
-        //             'choose_from_most_used'      => __( 'Choose from the most used statuses', $this->plugin_name ),
-        //             'popular_items'              => __( 'Popular Statuses', $this->plugin_name ),
-        //             'search_items'               => __( 'Search Statuses', $this->plugin_name ),
-        //             'not_found'                  => __( 'Not Found', $this->plugin_name ),
-        //             'no_terms'                   => __( 'No items', $this->plugin_name ),
-        //             'items_list'                 => __( 'Items list', $this->plugin_name ),
-        //             'items_list_navigation'      => __( 'Items list navigation', $this->plugin_name ),
-        //         ),
-        //         // Terms to insert by default
-        //         'terms' => array(
-        //             'Term Name' => array(
-        //                 'alias_of'    => null,
-        //                 'description' => __( 'Description', $this->plugin_name ),
-        //                 'parent'      => 0,
-        //                 'slug'        => 'term_name_slug'
-        //             ),
-        //         ),
-        //     ),
-        // );
     }
 
     /**
