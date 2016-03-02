@@ -222,6 +222,11 @@ class Mdm_Show_Manager_Admin {
         add_submenu_page( $this->plugin_name, __( 'Add New Show', $this->plugin_name ), __( 'Add New Show', $this->plugin_name ), 'manage_options', 'post-new.php?post_type=show', false );
     }
 
+    public function register_network_admin_menu() {
+        // Add top level menu page
+        add_menu_page( __( 'MDM Show Manager', $this->plugin_name ), __( 'Show Manager', $this->plugin_name ), 'manage_options', $this->plugin_name, array( $this, 'display_menu_page' ), 'dashicons-microphone', 5 );
+    }
+
     /**
      * Display the base menu page, which is the calendar
      * @see https://codex.wordpress.org/Administration_Menus

@@ -39,6 +39,11 @@ Answer
 3. Show calendar
 
 == Changelog ==
+= v1.1.2 - March 2, 2016 =
+* Added multisite support for the update system
+
+= v1.1.1 - March 2, 2016 =
+* Added the option to disable archives, and use a static page instead
 
 = v1.1.0 alpha - March 2, 2016 =
 * Updated widget code

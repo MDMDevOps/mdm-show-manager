@@ -45,8 +45,8 @@ class Mdm_Show_Manager_Updater {
         return $this;
     }
     public function authorize() {
-        $auth = get_option( $this->settings_key );
-        $this->authorize_token = ( isset( $auth['api_key']['value'] ) ) ? esc_attr( $auth['api_key']['value'] ) : null;
+        $auth = ( is_multisite() ) ? get_site_option( $this->settings_key ) : get_option( $this->settings_key );
+        $this->authorize_token = ( isset( $auth['api_key'] ) ) ? esc_attr( $auth['api_key'] ) : null;
     }
     public function set_plugin_properties() {
         $this->plugin   = get_plugin_data( $this->file );
@@ -120,7 +120,7 @@ class Mdm_Show_Manager_Updater {
     }
     public function plugin_popup( $result, $action, $args ) {
         if( !empty( $args->slug ) ) { // If there is a slug
-            if( $args->slug == MDM_CLOSINGS_SLUG ) { // And it's our slug
+            if( $args->slug == $this->slug ) { // And it's our slug
                 $this->get_repository_data(); // Get our repo info
                 // Set it to an array
                 $plugin = array(

@@ -79,6 +79,7 @@ class Mdm_Show_Manager {
         $this->define_settings_hooks();
         $this->define_content_hooks();
         $this->define_widget_hooks();
+        $this->define_update_hooks();
     }
 
     /**
@@ -222,7 +223,10 @@ class Mdm_Show_Manager {
         $this->loader->add_action( 'init', $plugin_settings, 'set_settings' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_settings_page' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'register_settings' );
-
+        $this->loader->add_action( 'init', $plugin_settings, 'set_network_settings' );
+        $this->loader->add_action( 'network_admin_menu', $plugin_settings, 'register_network_settings_page' );
+        $this->loader->add_action( 'admin_init', $plugin_settings, 'register_network_settings' );
+        $this->loader->add_action( 'network_admin_edit_mdmsm_update_network_options', $plugin_settings, 'mdmsm_update_network_options' );
     }
 
     private function define_widget_hooks() {
@@ -238,7 +242,6 @@ class Mdm_Show_Manager {
     private function define_update_hooks() {
 
         $plugin_updater = new Mdm_Show_Manager_Updater( $this->get_plugin_name(), $this->get_version(), $this->get_settings_key(), $this->get_plugin_base(), $this->get_plugin_slug() );
-
         $this->loader->add_action( 'admin_init', $plugin_updater, 'set_plugin_properties' );
         $this->loader->add_filter( 'pre_set_site_transient_update_plugins', $plugin_updater, 'modify_transient', 10, 1 );
         $this->loader->add_filter( 'upgrader_post_install', $plugin_updater, 'after_install', 10, 3  );
