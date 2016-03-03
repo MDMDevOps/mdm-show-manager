@@ -39,6 +39,9 @@ Answer
 3. Show calendar
 
 == Changelog ==
+= v1.1.3 - March 3, 2016 =
+* Minor bug fix with permalinks when network activated
+
 = v1.1.2 - March 2, 2016 =
 * Added multisite support for the update system
 

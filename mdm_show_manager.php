@@ -11,7 +11,7 @@
  * Plugin Name: MDM Show Manager
  * Plugin URI:  http://midwestfamilymarketing.com
  * Description: Manage Radio Show Schedules
- * Version:     1.1.2
+ * Version:     1.1.3
  * Author:      Mid-West Family Marketing
  * Author URI:  http://midwestfamilymarketing.com
  * License:     GPL-2.0+
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  if( !function_exists( 'mdmsm_plugin_config' ) ) {
      function mdmsm_plugin_config() {
         // Makes sure the plugin is defined before trying to use it
-        if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+        if ( !function_exists( 'is_plugin_active_for_network' ) ) {
             require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
         }
         $plugin_config = array (
@@ -42,7 +42,7 @@ if ( ! defined( 'WPINC' ) ) {
             // 2. Reference to root directory NAME ( what Wordpress uses internally as the "plugin slug" )
             'plugin_slug'    => dirname( plugin_basename( __FILE__ ) ),
             // 3. Reference to the current version number, used internally
-            'plugin_version' => '1.1.2',
+            'plugin_version' => '1.1.3',
             // 4: Reference to this file, the main plugin file
             'plugin_base'    => __FILE__,
             // 5: Reference to setting key used to get stuff out of the database

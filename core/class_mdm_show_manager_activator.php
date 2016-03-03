@@ -23,10 +23,11 @@ class Mdm_Show_Manager_Activator {
             'plugin_version' => null,
             'plugin_base'    => null,
             'settings_key'   => null,
+            'network'        => null,
         );
         $plugin_args = ( !empty( $plugin_args ) ) ? array_merge( $default_args, $plugin_args ) : $default_args;
         self::activate_content_types( $plugin_args['plugin_name'], $plugin_args['settings_key'] );
-        self::activate_settings( $plugin_args['plugin_name'], $plugin_args['settings_key'] );
+        self::activate_settings( $plugin_args['plugin_name'], $plugin_args['settings_key'], $plugin_args['network'] );
         update_option( 'showschedid', rand( 100, 1000 ), true );
         self::flush_permalinks();
     }
@@ -42,7 +43,6 @@ class Mdm_Show_Manager_Activator {
         $content->register_post_types();
         $content->register_taxonomies();
         $content->set_default_terms();
-        flush_rewrite_rules();
     }
 
     /**
@@ -51,10 +51,10 @@ class Mdm_Show_Manager_Activator {
      * @param (string) $settings_key : unique key used to store plugin settings
      * @since 1.0.0
      */
-    public static function activate_settings( $plugin_name, $settings_key ) {
+    public static function activate_settings( $plugin_name, $settings_key, $network ) {
         include_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class_mdm_show_manager_settings.php';
-        $settings = new Mdm_Show_Manager_Settings( $plugin_name, $settings_key );
-        $settings->set_defaults( true );
+        $settings = new Mdm_Show_Manager_Settings( $plugin_name, $settings_key, $network );
+        // $settings->set_defaults( true );
     }
 
     public static function flush_permalinks() {
