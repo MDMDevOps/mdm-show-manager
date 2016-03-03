@@ -313,94 +313,131 @@ class Mdm_Show_Manager_Admin {
         include plugin_dir_path( __FILE__ ) . 'metabox/display_options_metabox.php';
     }
 
-    private function get_social_fields( $post ) {
-        $fields = array(
-            'facebook' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Facebook URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Facebook Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-facebook', $this->plugin_name ),
-                ),
-            ),
-            'twitter' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Twitter URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Twitter Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-twitter', $this->plugin_name ),
-                ),
-            ),
-            'instagram' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Instagram URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Instagram Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-instagram', $this->plugin_name ),
-                ),
-            ),
-            'pinterest' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Pinterest URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Pinterest Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-pinterest', $this->plugin_name ),
-                ),
-            ),
-            'youtube' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Youtube URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Youtube Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-youtube', $this->plugin_name ),
-                ),
-            ),
-            'vimeo' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Vimeo URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Vimeo Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-vimeo', $this->plugin_name ),
-                ),
-            ),
-            'gplus' => array(
-                'uri' => array(
-                    'value'       => null,
-                    'label'       => __( 'Google+ URI', $this->plugin_name ),
-                    'placeholder' => null,
-                ),
-                'ico' => array(
-                    'value'       => null,
-                    'label'       => __( 'Google+ Icon', $this->plugin_name ),
-                    'placeholder' => __( 'mdmsm-icon-gplus', $this->plugin_name ),
-                ),
-            ),
-        );
+    // private function get_social_field_settings() {
+    //     $fields = array(
+    //         'facebook' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Facebook URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Facebook Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-facebook', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'twitter' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Twitter URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Twitter Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-twitter', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'instagram' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Instagram URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Instagram Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-instagram', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'pinterest' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Pinterest URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Pinterest Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-pinterest', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'youtube' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Youtube URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Youtube Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-youtube', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'vimeo' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Vimeo URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Vimeo Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-vimeo', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'gplus' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Google+ URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Google+ Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-gplus', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'email' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Email', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'email',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Email Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-mail-alt', $this->plugin_name ),
+    //             ),
+    //         ),
+    //         'website' => array(
+    //             'uri' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Website URI', $this->plugin_name ),
+    //                 'placeholder' => null,
+    //                 'type'        => 'uri',
+    //             ),
+    //             'ico' => array(
+    //                 'value'       => null,
+    //                 'label'       => __( 'Website Icon', $this->plugin_name ),
+    //                 'placeholder' => __( 'mdmsm-icon-home', $this->plugin_name ),
+    //             ),
+    //         ),
+    //     );
+    //     return $fields;
+    // }
 
+    private function get_social_fields( $post ) {
+        $fields = Mdm_Show_Manager::get_social_fields();
         // Get options from database
         $socuri = ( is_array( get_post_meta( $post->ID, 'social_uri', true ) ) ) ? get_post_meta( $post->ID, 'social_uri', true ) : array();
         $socico = ( is_array( get_post_meta( $post->ID, 'social_ico', true ) ) ) ? get_post_meta( $post->ID, 'social_ico', true ) : array();
@@ -409,7 +446,6 @@ class Mdm_Show_Manager_Admin {
             $fields[$name]['uri']['value'] = ( isset( $socuri[ $name ] ) && !empty( $socuri[$name] ) ) ? $socuri[$name] : null;
             $fields[$name]['ico']['value'] = ( isset( $socico[ $name ] ) && !empty( $socico[$name] ) ) ? $socico[$name] : null;
         }
-
         return $fields;
     }
 
@@ -467,12 +503,17 @@ class Mdm_Show_Manager_Admin {
             'uri_redirect' => isset( $_POST['uri_redirect'] ) ? esc_url_raw( $_POST['uri_redirect'] ) : null,
             'widget_description' => isset( $_POST['widget_description'] ) ? stripslashes( wp_filter_post_kses( $_POST['widget_description'] ) ) : null,
         );
+        $fields = Mdm_Show_Manager::get_social_fields();
         // Get values from $_POST
         $socuri = ( isset( $_POST['social_uri'] ) && !empty( $_POST['social_uri'] ) ) ? $_POST['social_uri'] : array();
         $socico = ( isset( $_POST['social_ico'] ) && !empty( $_POST['social_ico'] ) ) ? $_POST['social_ico'] : array();
         // Sanitize
         foreach( $socuri as $name => $uri ) {
-            $socuri[$name] = esc_url_raw( $uri );
+            if( $fields[$name]['uri']['type'] === 'email' ) {
+                $socuri[$name] = sanitize_email( $uri );
+            } elseif( $fields[$name]['uri']['type'] === 'uri' ) {
+                $socuri[$name] = esc_url_raw( $uri );
+            }
         }
         foreach( $socico as $name => $ico ) {
             $socico[$name] = sanitize_text_field( stripslashes( $ico ) );

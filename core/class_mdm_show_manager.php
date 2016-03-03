@@ -318,4 +318,160 @@ class Mdm_Show_Manager {
     public function get_network_status() {
         return $this->network;
     }
+
+    /**
+     * Get Icon Font class Name
+     * @since  1.0.0
+     * @param ( string ) $icon   : name of icon to retrieve
+     * @param ( book )   $return : whether to return the icon or not, useful for bootstrapping other options
+     * @return (string) class name of icon
+     */
+    public static function get_mdmsm_icon( $icon = null, $return = true ) {
+        // If no icon request is passed in, just bail
+        if( !$icon ) {
+            return false;
+        }
+        // If user specifies return false, do that
+        if( !$return )  {
+            return null;
+        }
+        $icon_map = array(
+            'twitter'   => 'font-icon mdmsm-icon-twitter',
+            'facebook'  => 'font-icon mdmsm-icon-facebook',
+            'gplus'     => 'font-icon mdmsm-icon-gplus',
+            'youtube'   => 'font-icon mdmsm-icon-youtube',
+            'pinterest' => 'font-icon icon fa fa-pinterest',
+            'instagram' => 'font-icon mdmsm-icon-instagram',
+            'email'     => 'font-icon mdmsm-icon-mail-alt',
+            'website'   => 'font-icon mdmsm-icon-home',
+        );
+
+        if( isset( $icon_map[ strtolower( $icon ) ] ) ) {
+            return $icon_map[ strtolower( $icon ) ];
+        }
+        return false;
+    }
+
+    public static function get_social_fields() {
+        $fields = array(
+            'facebook' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Facebook URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Facebook Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-facebook', 'mdm_show_manager' ),
+                ),
+            ),
+            'twitter' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Twitter URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Twitter Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-twitter', 'mdm_show_manager' ),
+                ),
+            ),
+            'instagram' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Instagram URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Instagram Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-instagram', 'mdm_show_manager' ),
+                ),
+            ),
+            'pinterest' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Pinterest URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Pinterest Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-pinterest', 'mdm_show_manager' ),
+                ),
+            ),
+            'youtube' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Youtube URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Youtube Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-youtube', 'mdm_show_manager' ),
+                ),
+            ),
+            'vimeo' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Vimeo URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Vimeo Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-vimeo', 'mdm_show_manager' ),
+                ),
+            ),
+            'gplus' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Google+ URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Google+ Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-gplus', 'mdm_show_manager' ),
+                ),
+            ),
+            'email' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Email', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'email',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Email Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-mail-alt', 'mdm_show_manager' ),
+                ),
+            ),
+            'website' => array(
+                'uri' => array(
+                    'value'       => null,
+                    'label'       => __( 'Website URI', 'mdm_show_manager' ),
+                    'placeholder' => null,
+                    'type'        => 'uri',
+                ),
+                'ico' => array(
+                    'value'       => null,
+                    'label'       => __( 'Website Icon', 'mdm_show_manager' ),
+                    'placeholder' => __( 'mdmsm-icon-home', 'mdm_show_manager' ),
+                ),
+            ),
+        );
+        return $fields;
+    }
 } // end class

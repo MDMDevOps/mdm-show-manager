@@ -96,6 +96,7 @@ class Mdm_Show_Manager_Public {
     }
 
     private function social_links_list( $post_id, $args ) {
+        $fields = Mdm_Show_Manager::get_social_fields();
         // Get social settings from database
         $socuri = ( is_array( get_post_meta( $post_id, 'social_uri', true ) ) ) ? get_post_meta( $post_id, 'social_uri', true ) : array();
         $socico = ( is_array( get_post_meta( $post_id, 'social_ico', true ) ) ) ? get_post_meta( $post_id, 'social_ico', true ) : array();
@@ -108,9 +109,9 @@ class Mdm_Show_Manager_Public {
             }
             // Else lets build some output
             $output .= '<li class="social-link">';
-            $output .= sprintf( '<a href="%1$s"><span class="%2$s"></span><span class="%3$s">%4$s</span></a>',
-                esc_url( $uri, null, 'display' ),
-                isset( $socico[$name] ) && !empty( $socico[$name] ) ? esc_attr( $socico[$name] ) : Mdm_Show_Manager_Utilities::get_mdmsm_icon( $name ),
+            $output .= sprintf( '<a %s><span class="%2$s"></span><span class="%3$s">%4$s</span></a>',
+                $fields[$name]['uri']['type'] === 'email' ? sprintf( 'href="mailto:%s"', $uri ) : sprintf( 'href="%s" target="_blank"', esc_url( $uri, null, 'display' ) ),
+                isset( $socico[$name] ) && !empty( $socico[$name] ) ? esc_attr( $socico[$name] ) : Mdm_Show_Manager::get_mdmsm_icon( $name ),
                 $args['show_names'] === true ? 'mdmsm-social-name' : 'mdmsm-screen-reader-text',
                 $name
             );
