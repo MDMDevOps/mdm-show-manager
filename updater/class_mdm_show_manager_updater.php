@@ -25,13 +25,14 @@ class Mdm_Show_Manager_Updater {
     private $authorize_token;
     private $github_response;
     private $settings_key;
+    private $network;
 
     /**
      * Initialize updater and set options
      * @since 1.0.0
      * @param (string)$file -> path to base plugin file
      */
-    public function __construct( $plugin_name, $version, $settings_key, $plugin_base, $plugin_slug ) {
+    public function __construct( $plugin_name, $version, $settings_key, $plugin_base, $plugin_slug, $network ) {
         // Set options
         $this->plugin_name  = $plugin_name;
         $this->version      = $version;
@@ -40,12 +41,13 @@ class Mdm_Show_Manager_Updater {
         $this->username     = 'MDMDevOps';
         $this->repository   = 'mdm-show-manager';
         $this->settings_key = $settings_key;
+        $this->network      = $network;
         $this->authorize();
         // return update object
         return $this;
     }
     public function authorize() {
-        $auth = ( is_multisite() ) ? get_site_option( $this->settings_key ) : get_option( $this->settings_key );
+        $auth = ( $this->network ) ? get_site_option( $this->settings_key ) : get_option( $this->settings_key );
         $this->authorize_token = ( isset( $auth['api_key'] ) ) ? esc_attr( $auth['api_key'] ) : null;
     }
     public function set_plugin_properties() {

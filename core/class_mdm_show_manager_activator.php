@@ -28,6 +28,7 @@ class Mdm_Show_Manager_Activator {
         self::activate_content_types( $plugin_args['plugin_name'], $plugin_args['settings_key'] );
         self::activate_settings( $plugin_args['plugin_name'], $plugin_args['settings_key'] );
         update_option( 'showschedid', rand( 100, 1000 ), true );
+        self::flush_permalinks();
     }
 
     /**
@@ -54,5 +55,11 @@ class Mdm_Show_Manager_Activator {
         include_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class_mdm_show_manager_settings.php';
         $settings = new Mdm_Show_Manager_Settings( $plugin_name, $settings_key );
         $settings->set_defaults( true );
+    }
+
+    public static function flush_permalinks() {
+        global $wp_rewrite;
+        $wp_rewrite->init(); //important...
+        $wp_rewrite->flush_rules();
     }
 } // end class

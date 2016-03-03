@@ -70,7 +70,7 @@ class Mdm_Show_Manager {
         $this->version      = $plugin_args['plugin_version'];
         $this->plugin_base  = $plugin_args['plugin_base'];
         $this->settings_key = $plugin_args['settings_key'];
-
+        $this->network      = $plugin_args['network'];
 
         $this->load_dependencies();
         $this->set_locale();
@@ -218,7 +218,7 @@ class Mdm_Show_Manager {
      */
     private function define_settings_hooks() {
         // Instantiate Settings Object
-        $plugin_settings = new Mdm_Show_Manager_Settings( $this->get_plugin_name(), $this->get_settings_key() );
+        $plugin_settings = new Mdm_Show_Manager_Settings( $this->get_plugin_name(), $this->get_settings_key(), $this->get_network_status() );
         // Define Hooks
         $this->loader->add_action( 'init', $plugin_settings, 'set_settings' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_settings_page' );
@@ -241,7 +241,7 @@ class Mdm_Show_Manager {
      */
     private function define_update_hooks() {
 
-        $plugin_updater = new Mdm_Show_Manager_Updater( $this->get_plugin_name(), $this->get_version(), $this->get_settings_key(), $this->get_plugin_base(), $this->get_plugin_slug() );
+        $plugin_updater = new Mdm_Show_Manager_Updater( $this->get_plugin_name(), $this->get_version(), $this->get_settings_key(), $this->get_plugin_base(), $this->get_plugin_slug(), $this->get_network_status() );
         $this->loader->add_action( 'admin_init', $plugin_updater, 'set_plugin_properties' );
         $this->loader->add_filter( 'pre_set_site_transient_update_plugins', $plugin_updater, 'modify_transient', 10, 1 );
         $this->loader->add_filter( 'upgrader_post_install', $plugin_updater, 'after_install', 10, 3  );
@@ -308,5 +308,14 @@ class Mdm_Show_Manager {
      */
     public function get_plugin_slug() {
         return $this->plugin_slug;
+    }
+
+    /**
+     * Retrieve the network activation status
+     * @since  1.0.0
+     * @return (string) The slug used by wordpress
+     */
+    public function get_network_status() {
+        return $this->network;
     }
 } // end class

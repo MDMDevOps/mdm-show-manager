@@ -32,20 +32,25 @@ if ( ! defined( 'WPINC' ) ) {
 
  if( !function_exists( 'mdmsm_plugin_config' ) ) {
      function mdmsm_plugin_config() {
-         $plugin_config = array (
-             // 1. Reference to the name to use internally for the plugin
-             'plugin_name'    => 'mdm_show_manager',
-             // 2. Reference to root directory NAME ( what Wordpress uses internally as the "plugin slug" )
-             'plugin_slug'    => dirname( plugin_basename( __FILE__ ) ),
-             // 3. Reference to the current version number, used internally
-             'plugin_version' => '1.1.2',
-             // 4: Reference to this file, the main plugin file
-             'plugin_base'    => __FILE__,
-             // 5: Reference to setting key used to get stuff out of the database
-             'settings_key'   => 'mdm_show_manager_settings',
-             // token:62747899ea6484e4b670e2c467958719f870271f
-         );
-         return $plugin_config;
+        // Makes sure the plugin is defined before trying to use it
+        if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+            require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+        }
+        $plugin_config = array (
+            // 1. Reference to the name to use internally for the plugin
+            'plugin_name'    => 'mdm_show_manager',
+            // 2. Reference to root directory NAME ( what Wordpress uses internally as the "plugin slug" )
+            'plugin_slug'    => dirname( plugin_basename( __FILE__ ) ),
+            // 3. Reference to the current version number, used internally
+            'plugin_version' => '1.1.2',
+            // 4: Reference to this file, the main plugin file
+            'plugin_base'    => __FILE__,
+            // 5: Reference to setting key used to get stuff out of the database
+            'settings_key'   => 'mdm_show_manager_settings',
+            // 6: Network Activated
+            'network'        => is_plugin_active_for_network( plugin_basename( __FILE__ ) ),
+        );
+        return $plugin_config;
      }
  }
 

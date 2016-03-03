@@ -430,7 +430,19 @@ class Mdm_Show_Manager_Admin {
          **************************************************************************/
         // Now, we can use this as an opportunity to rebase our master schedule, but that's about it
         // We (should have) already saved the data with the ajax functions, but we want to make sure it stays in sync
+        $this->save_permalinks();
         $this->rebase_onair_master();
+    }
+
+    private function save_permalinks() {
+        $permalinks = get_option( 'mdmsm_permalinks', false );
+        if( $permalinks ) {
+            return;
+        }
+        global $wp_rewrite;
+        $wp_rewrite->init();
+        $wp_rewrite->flush_rules();
+        update_option( 'mdmsm_permalinks', true );
     }
 
     /**
@@ -489,7 +501,6 @@ class Mdm_Show_Manager_Admin {
             while( $the_query->have_posts() ) {
                 $the_query->the_post();
                 $post_meta = get_post_meta( $the_query->post->ID, 'onair', true );
-                ++$count;
                 if( is_array( $post_meta) && !empty( $post_meta ) ) {
 
                     foreach( $post_meta as $meta ) {

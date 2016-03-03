@@ -50,6 +50,7 @@
      */
     private $options;
     private $network_options;
+    private $network; // whether this is network activated or not
 
     /**
      * Initialize the class and set its properties.
@@ -57,9 +58,10 @@
      * @param (string) $plugin_name : The name of this plugin.
      * @param (string) $version     : The version of this plugin.
      */
-    public function __construct( $plugin_name, $settings_key ) {
+    public function __construct( $plugin_name, $settings_key, $network ) {
         $this->plugin_name  = $plugin_name;
         $this->settings_key = $settings_key;
+        $this->network      = $network;
         $this->set_options();
         $this->set_defaults();
         $this->set_network_options();
@@ -84,7 +86,7 @@
                'description' => sprintf( '%s%s %s%s', __( 'Enter your GitHub', $this->plugin_name ), '<a href="https://github.com/blog/1509-personal-api-tokens" target="_blank">', __( 'Personal Access Token', $this->plugin_name ), '</a>' ),
                'placeholder' => null,
                'default'     => null,
-               'restrict'    => 'multisite',
+               'restrict'    => 'network',
             ),
             'css_disable' => array(
                 'title'         => __( 'Disable CSS Output', $this->plugin_name ),
@@ -312,7 +314,7 @@
             // Initialize $setting w/ data from options array
             $setting = $this->options[$key];
             // make sure this isn't a restricted setting
-            if( isset( $setting['restrict'] ) && $setting['restrict'] === 'multisite' && is_multisite() ) {
+            if( isset( $setting['restrict'] ) && $setting['restrict'] === 'network' && $this->network == true ) {
                continue;
             }
             // Append $key to array so we know what were working with
