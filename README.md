@@ -39,6 +39,9 @@ Answer
 3. Show calendar
 
 == Changelog ==
+= v1.2.0 - March 3, 2016 =
+* Added Email and Website support to social profiles
+
 = v1.1.3 - March 3, 2016 =
 * Minor bug fix with permalinks when network activated
 
