@@ -32,7 +32,6 @@
                 <li class="header"><?php echo $this->get_day_name( $day ) ?></li>
                 <!-- Set individuatl rows -->
                 <?php $time->setTime( 0, 0, 0 ); ?>
-                <?php for( $slot = 0; $slot <= 47; $slot++  ) : ?>
                 <?php for( $slot = 0; $slot < 48; $slot++  ) : ?>
                     <?php echo $this->get_calendar_row( $slot, $day, $time->format( 'H:i:s' ) ); ?>
                     <!--Increment time object -->
@@ -40,8 +39,6 @@
                 <?php endfor; ?>
             </ol>
             <!-- reset time -->
-            <?php //$this->reset_time(); ?>
-
             <?php $time->setTime( 0, 0, 0 ); ?>
         <?php endfor; ?>
         </div>
