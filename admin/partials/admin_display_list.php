@@ -7,17 +7,11 @@
  * @package mdm_show_manager
  */
 ?>
-<?php
-
-?>
-<?php add_thickbox(); ?>
 
 <?php // Feature in development : include plugin_dir_path( __FILE__ ) . 'display_calendar_form.php'; ?>
 
 <div id="mdmsm_calendar">
     <div class="mdmsm_calendar_wrapper">
-        <!-- reset time -->
-        <?php $this->reset_time(); ?>
         <!-- Time Label Column -->
         <ol class="calendar-time">
             <!-- Set left column 'header' -->
@@ -28,6 +22,8 @@
                 <?php $time->add( new DateInterval('PT30M') ); ?>
             <?php endfor; ?>
         </ol>
+        <!-- reset time -->
+        <?php $time->setTime( 0, 0, 0 ); ?>
         <!-- Set calendar days -->
         <div class="mdmsm_calendar_slots">
         <?php for( $day = 1; $day <= 7; $day++ ) : ?>
@@ -37,6 +33,7 @@
                 <!-- Set individuatl rows -->
                 <?php $time->setTime( 0, 0, 0 ); ?>
                 <?php for( $slot = 0; $slot <= 47; $slot++  ) : ?>
+                <?php for( $slot = 0; $slot < 48; $slot++  ) : ?>
                     <?php echo $this->get_calendar_row( $slot, $day, $time->format( 'H:i:s' ) ); ?>
                     <!--Increment time object -->
                     <?php $time->add( new DateInterval('PT30M') ); ?>
@@ -44,6 +41,8 @@
             </ol>
             <!-- reset time -->
             <?php //$this->reset_time(); ?>
+
+            <?php $time->setTime( 0, 0, 0 ); ?>
         <?php endfor; ?>
         </div>
     </div>
