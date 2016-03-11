@@ -33,26 +33,26 @@ It can also be installed using the built in uploader
 
 Answer
 
-== Screenshots ==
-    1. Schedule of single show
-    2. Show options
-    3. Show calendar
+== Screenshots ==  
+1. Schedule of single show  
+2. Show options  
+3. Show calendar  
 
-== Changelog ==
-    = v1.2.1 - March 11, 2016 =
-    * Fixed small bug that made datetime object in calendar skip certain times
+== Changelog ==  
+= v1.2.1 - March 11, 2016 =  
+* Fixed small bug that made datetime object in calendar skip certain times  
 
-= v1.2.0 - March 3, 2016 =
-* Added Email and Website support to social profiles
+= v1.2.0 - March 3, 2016 =  
+* Added Email and Website support to social profiles  
 
-= v1.1.3 - March 3, 2016 =
-* Minor bug fix with permalinks when network activated
+= v1.1.3 - March 3, 2016 =  
+* Minor bug fix with permalinks when network activated  
 
-= v1.1.2 - March 2, 2016 =
-* Added multisite support for the update system
+= v1.1.2 - March 2, 2016 =  
+* Added multisite support for the update system  
 
-= v1.1.1 - March 2, 2016 =
-* Added the option to disable archives, and use a static page instead
+= v1.1.1 - March 2, 2016 =  
+* Added the option to disable archives, and use a static page instead  
 
 = v1.1.0 alpha - March 2, 2016 =
 * Updated widget code
