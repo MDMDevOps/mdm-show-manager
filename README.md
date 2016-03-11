@@ -39,6 +39,9 @@ Answer
 3. Show calendar
 
 == Changelog ==
+= v1.2.1 - March 11, 2016 =
+* Fixed small bug that made datetime object in calendar skip certain times
+
 = v1.2.0 - March 3, 2016 =
 * Added Email and Website support to social profiles
 

@@ -1,3 +1,6 @@
+# mdm-show-manager
+Wordpress plugin to manage show schedules, as well as display 'now playing' widget
+
 === MDM Show Manager ===
 Contributors: Mid-West Family Marketing
 Tags: wordpress, plugin
@@ -36,6 +39,28 @@ Answer
 3. Show calendar
 
 == Changelog ==
+= v1.2.1 - March 11, 2016 =
+* Fixed small bug that made datetime object in calendar skip certain times
+
+= v1.2.0 - March 3, 2016 =
+* Added Email and Website support to social profiles
+
+= v1.1.3 - March 3, 2016 =
+* Minor bug fix with permalinks when network activated
+
+= v1.1.2 - March 2, 2016 =
+* Added multisite support for the update system
+
+= v1.1.1 - March 2, 2016 =
+* Added the option to disable archives, and use a static page instead
+
+= v1.1.0 alpha - March 2, 2016 =
+* Updated widget code
+* Added redirect functionality
+* Added content shortcode
+* Added social profile integration for individual shows
+* Fixed bug on master schedule rebase that limited shows to 10
+* Updated admin display to be more consistant with Wordpress core styles
 
 = v1.0.0 alpha - Febuary 10, 2016 =
 * Added plugin base code to repository
