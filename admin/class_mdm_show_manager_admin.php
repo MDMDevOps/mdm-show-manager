@@ -255,7 +255,6 @@ class Mdm_Show_Manager_Admin {
         // if nothing is set, lets just bail...these are not the droids I'm looking for
         if( !isset( $iter ) || !isset( $day ) || !isset( $time ) ) {
             // Temp
-            echo 'malformed';
             return false;
         }
         // If nothing is set, we need to return an empty list item and bail

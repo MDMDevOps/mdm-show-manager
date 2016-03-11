@@ -24,12 +24,10 @@
             <li class="header"><?php _e( 'Day', $this->plugin_name ); ?></li>
             <!-- Set left column time labels -->
             <?php for( $i = 0; $i < 48; $i++  ) : ?>
-                <li class="timelabel" data-time="<?php echo $this->time->format( 'h:i:s' ); ?>"><span class="label"><?php echo $this->time->format( 'h:i A' ); ?></span></li>
-                <?php $this->time->add( new DateInterval('PT30M') ); ?>
+                <li class="timelabel" data-time="<?php echo $time->format( 'h:i:s' ); ?>"><span class="label"><?php echo $time->format( 'h:i A' ); ?></span></li>
+                <?php $time->add( new DateInterval('PT30M') ); ?>
             <?php endfor; ?>
         </ol>
-        <!-- reset time -->
-        <?php $this->reset_time(); ?>
         <!-- Set calendar days -->
         <div class="mdmsm_calendar_slots">
         <?php for( $day = 1; $day <= 7; $day++ ) : ?>
@@ -37,14 +35,15 @@
                 <!-- Setting Heading -->
                 <li class="header"><?php echo $this->get_day_name( $day ) ?></li>
                 <!-- Set individuatl rows -->
-                <?php for( $slot = 0; $slot < 48; $slot++  ) : ?>
-                    <?php echo $this->get_calendar_row( $slot, $day, $this->time->format( 'H:i:s' ) ); ?>
+                <?php $time->setTime( 0, 0, 0 ); ?>
+                <?php for( $slot = 0; $slot <= 47; $slot++  ) : ?>
+                    <?php echo $this->get_calendar_row( $slot, $day, $time->format( 'H:i:s' ) ); ?>
                     <!--Increment time object -->
-                    <?php $this->time->add( new DateInterval('PT30M') ); ?>
+                    <?php $time->add( new DateInterval('PT30M') ); ?>
                 <?php endfor; ?>
             </ol>
             <!-- reset time -->
-            <?php $this->reset_time(); ?>
+            <?php //$this->reset_time(); ?>
         <?php endfor; ?>
         </div>
     </div>
